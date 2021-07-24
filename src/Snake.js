@@ -48,7 +48,6 @@ import { CoordUtil } from './CoordUtil.js';
                 return {x: h.x, y: --h.y}
             },
             r: h => {
-                console.log('r:', h)
                 return {x: h.x, y: ++h.y}
             }
         }[snake.direction](snake.head) || snake.head;
@@ -59,10 +58,8 @@ import { CoordUtil } from './CoordUtil.js';
         // Remove last element
         const lastSegment = snake.body.pop();
 
-        console.log('CoordUtil.isCoordSame(oldHead, bait)', oldHead, bait)
         // Re-attach last element if snake attained bait
         if(typeof lastSegment?.x === 'number' && CoordUtil.isCoordSame(oldHead, bait)) {
-            console.log('GROWING:', JSON.parse(JSON.stringify(snake)))
             snake.body.push(lastSegment);
             return true;
         }

@@ -16,7 +16,7 @@ const GRID_SIZE = 50
 const config = {
     len: GRID_SIZE,
     startCoords: { x: Math.floor(GRID_SIZE/2), y: Math.floor(GRID_SIZE/2) },
-    speed: 15
+    speed: 0.15
 };
 
 const Render = {
@@ -38,7 +38,6 @@ const state =  initState();
 function initState() {
 
     const snake = Snake(config.startCoords);
-    console.log('initState bait', snake);
     
     const bait = CoordUtil.getRandomUnusedCoord(snake.body, config.len);
 
@@ -49,7 +48,6 @@ function initState() {
         bait
     };
 
-    console.log('CLONE CLONE ininit, ', JSON.parse(JSON.stringify(state)));
     return state;
 }
 
@@ -93,7 +91,6 @@ function updateLoop(timestamp) {
     }
 
     state.isAlive && window.requestAnimationFrame(updateLoop);
-    !state.isAlive && console.log('dead:', JSON.parse(JSON.stringify(state)));
     !state.isAlive && alert('Sorry, you lost');
 }
 

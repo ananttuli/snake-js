@@ -10,10 +10,10 @@
 }
 
 .cell {
-    width: 10px;
-    height: 10px;
-    border: 0.01rem solid black;
-    transition: background 0.5s ease-out;
+    width: 7px;
+    height: 7px;
+    border: 0.01rem solid rgba(1, 0, 0, 0.1);
+    /* transition: background-color 2s ease-out; */
 }
 
 .snake {
