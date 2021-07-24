@@ -52,7 +52,7 @@ function initState() {
 }
 
 
-function checkBounds(x, y) {
+function isInBounds(x, y) {
     return x < config.len && x >= 0 && y < config.len && y >= 0;
 }
 
@@ -69,11 +69,13 @@ function executeLogicLoop() {
         CoordUtil.getRandomUnusedCoord([state.snake.head, ...state.snake.body], config.len) :
         state.bait;
 
-    state.isAlive = checkBounds(state.snake.head.x, state.snake.head.y);
+    // Check if snake has collided with either the walls or its own body
+    state.isAlive = isInBounds(state.snake.head.x, state.snake.head.y) &&
+        !CoordUtil.containsCoord(state.snake.head, state.snake.body);
 
     if(baitWon) {
         // If bait won, increase speed by 10%
-        config.speed = config.speed - 0.1*config.speed;
+        config.speed = config.speed - 0.05*config.speed;
     }
 
     return state.isAlive;
