@@ -98,15 +98,15 @@ function updateLoop(timestamp) {
 
 function addControls() {
     // ['u', 'd', 'l', 'r'].forEach((d) => document.getElementById(d).onclick = () => state.snake.direction = d);
-
     document.addEventListener('keydown', (e) => {
-        ({
-            'ArrowUp': () => state.snake.direction = 'u',
-            'ArrowDown': () => state.snake.direction = 'd',
-            'ArrowLeft': () => state.snake.direction = 'l',
-            'ArrowRight': () => state.snake.direction = 'r',
-        })[e.key]();
-    })
+        state.snake.direction = ({
+            'ArrowUp': 'u',
+            'ArrowDown': 'd',
+            'ArrowLeft': 'l',
+            'ArrowRight': 'r',
+        })[e.key] || state.snake.direction;
+    });
+
 }
 
 function Game() {
